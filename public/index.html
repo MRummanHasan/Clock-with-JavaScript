@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="images/Vcferreira-Firefox-Os-Clock.ico" type="image/ico">
+    <title>JS - Clock</title>
+    <!--JS - Clock by M Rumman Hasan-->
+    <style>
+        html{
+            background: #012DED url(images/marine-life-sea-ocean-plants-under-water-creatures-lifeforms-colors-wallpaper-1.jpg); /*You can change the background anytime*/
+            background-size: cover;
+            font-family: 'helvetica neue';
+            font-size: 10px;
+        }
+        body{
+            font-size: 2rem;
+            /*display: flex;*/
+            /*flex: 1;*/
+            min-height: 100vh;
+            align-items: center;
+        }
+        .clock{
+            width: 30rem;
+            height: 30rem;
+            border: 20px solid white;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: 2rem;
+        }
+        .clock-face{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-3px);
+        }
+        .hand{
+            width: 50%;
+            height: 6px;
+            background: black;
+            position: absolute;
+            top: 50%;
+            transform-origin: 100%;
+            transform:  rotate(90deg);
+            transition: all 0.05s;
+        }
+        .second-hand{
+            height: 3px;
+        }
+        .alignment{
+            font-size: 2em; font-weight: bold; margin-right: 10px; margin-left:10px;
+        }
+        .digitFont{
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <div class="clock">
+        <div class="clock-face">   
+            <div class="hand hour-hand"></div>
+            <div class="hand min-hand"></div>
+            <div class="hand second-hand"></div>
+        </div>
+    </div>
+<center>
+    <div style="display:inline-flex; color: gold">
+        <div style="display:inline">
+            <span id="hr" class="digitFont">00</span>
+            <span style="display:block; margin-right: 10px; margin-left:10px; font-size: 14px">Hour</span>
+        </div>
+
+        <div style="display:inline;">
+            <span class="alignment"> : </span>
+            <span id="min" class="digitFont">00</span>
+            <span style="display:block; margin-right: 10px; margin-left:50px; font-size: 14px">Min</span>
+        </div>
+
+        <div style="display:inline; ">
+             <span class="alignment"> : </span>
+            <span id="sec" class="digitFont">00</span>
+            <span style="display:block; margin-right: 10px; margin-left:50px; font-size: 14px">Sec</span>
+        </div>
+    </div>
+</center>
+
+
+<script>
+    var secondHand = document.querySelector('.second-hand');
+    var minHand = document.querySelector('.min-hand');
+    var hourHand = document.querySelector('.hour-hand');
+
+    function setDate(){
+        var now = new Date();
+        var seconds = now.getSeconds();
+        var secondsDegree = ((seconds / 60) * 360) + 90;
+        secondHand.style.transform = 'rotate(' + secondsDegree + 'deg)';
+
+        var mins = now.getMinutes();
+        var minDegrees = ((mins / 60) * 360) + 90;
+        minHand.style.transform = 'rotate(' + minDegrees + 'deg)';
+
+        var hours = now.getHours();
+        var hourDegrees = ((hours / 12) * 360) + 90;
+        hourHand.style.transform = 'rotate(' + hourDegrees + 'deg)';
+    }
+
+    setInterval(setDate, 1000);
+
+    var Hr = document.querySelector('#hr');
+    var Min = document.querySelector('#min');
+    var Sec = document.querySelector('#sec');
+    function digitalClock(){
+        var now = new Date();
+
+        Hr.innerHTML = now.getHours(); 
+        Min.innerHTML = now.getMinutes();
+        Sec.innerHTML = now.getSeconds();
+    }
+    setInterval(digitalClock, 1000);
+
+
+</script>
+</body>
+</html>
